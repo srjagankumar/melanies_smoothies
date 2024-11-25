@@ -14,6 +14,10 @@ from snowflake.snowpark.functions import col
 name_on_order = st.text_input('Name on the Smoothie:')
 st.write('The name on your Smoothie order will be:',name_on_order)
 
+import requests
+smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/watermelon")
+st.text(smoothiefroot_response)
+
 cnx=st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
